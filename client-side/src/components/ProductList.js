@@ -38,6 +38,7 @@ export default class ProductList extends Component {
               <th>Title</th>
               <th>Price</th>
               <th>quantity</th>
+              <th>Description</th>
             </tr>
           </thead>
           <tbody>{this.tableRow()}</tbody>

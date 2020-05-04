@@ -3,6 +3,7 @@ var router = express.Router();
 var Product = require('../models/product');
 var Cart = require('../models/cart');
 var Order = require('../models/order');
+var Wishlist = require('../models/wish-list');
 /* GET home page. */
 
 router.get('/', function(req, res, next) {
@@ -58,6 +59,38 @@ router.get('/shopping-cart', function (req, res, next) {
   res.render('shop/shopping-cart', {products: cart.generateArray(), totalPrice: cart.totalPrice})
 });
 
+router.get('/add-to-wish-list/:id', function (req,res, next) {
+  var productId = req.params.id;
+  var wishlist = new Wishlist(req.session.wishlist ? req.session.wishlist : {});
+
+  Product.findById(productId, function (err, product) {
+    if(err){
+      return res.redirect('/');
+    }
+    wishlist.add(product, product.id);
+    req.session.wishlist = wishlist;
+    console.log(req.session.wishlist);
+    res.redirect('/');
+  });
+});
+
+router.get('/wish-list', function (req, res, next) {
+  if(!req.session.wishlist){
+    return res.render('shop/wish-list', {product: null});
+  }
+  var wishlist = new Wishlist(req.session.wishlist);
+  res.render('shop/wish-list', {products: wishlist.generateArray(), totalPrice: wishlist.totalPrice})
+});
+
+router.get('/removewishlist/:id', function (req, res, next) {
+  var productId = req.params.id;
+  var wishlist = new Wishlist(req.session.wishlist ? req.session.wishlist : {});
+
+  wishlist.removeItem(productId);
+  req.session.wishlist = wishlist;
+  res.redirect('/wish-list');
+});
+
 router.get('/checkout', isLoggedIn, function (req, res, next) {
   if(!req.session.cart){
     return res.redirect('/shopping-cart');
@@ -101,6 +134,11 @@ router.post('/checkout', isLoggedIn, function(req, res, next){
           res.redirect('/');
         });
       });
+});
+
+router.get('/home', function (req, res, next) {
+  res.send('wiki home');
+  console.log("home");
 });
 
 function isLoggedIn(req, res, next) {

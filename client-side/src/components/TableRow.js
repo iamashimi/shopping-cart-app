@@ -15,6 +15,7 @@ export default class TableRow extends Component {
         <td>{this.props.obj.title}</td>
         <td>{this.props.obj.price}</td>
         <td>{this.props.obj.quantity}</td>
+        <td>{this.props.obj.description}</td>
         <td>
           <button className="btn btn-sm btn-primary">
             <span uk-icon="pencil"></span>

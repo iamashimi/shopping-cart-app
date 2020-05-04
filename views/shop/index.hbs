@@ -15,10 +15,14 @@
                         <h3>{{ this.title }}</h3>
                         <p class="description">{{ this.description }}</p>
                         <div class="clearfix">
-                            <div class="price pull-left">${{ this.price }}</div>
-                            <a href="/add-to-cart/{{this._id}}" class="btn btn-success pull-right" role="button">Add to Shopping Cart</a>
+                            <div class="price">Rs.{{ this.price }}</div>
+                            <br>
+                            <a href="/add-to-wish-list/{{this._id}}" class="btn btn-success pull-left" role="button">Add to Wish list <i class="fa fa-heart" aria-hidden="true"></i></a><br><br>
+                            <a href="/add-to-cart/{{this._id}}" class="btn btn-success pull-left" role="button">Add to Shopping Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+
                         </div>
                     </div>
+
                 </div>
             </div>
         {{/each}}
