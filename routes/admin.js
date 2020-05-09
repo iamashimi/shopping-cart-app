@@ -1,5 +1,6 @@
 var express = require("express");
 var router = express.Router();
+var nodemailer = require('nodemailer');
 
 // ---------------------------------
 // const users = express.Router();
@@ -30,6 +31,30 @@ router.post("/register", (req, res) => {
     password: req.body.password,
     level: req.body.level,
   };
+
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'ashimikathri@gmail.com',
+      pass: 'Ashimidhara'
+    }
+  });
+
+  var mailOptions = {
+    from: 'ashimikathri@gmail.com',
+    to: req.body.email,
+    subject: 'Admin has created a new account for you.',
+    text: 'Welcome to Company. ' +
+        'Dear Manager your account username is ' + req.body.email + ' and the password is ' + req.body.password
+  };
+
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
 
   User.findOne({
     email: req.body.email,
