@@ -4,6 +4,7 @@ var Product = require('../models/product');
 var Cart = require('../models/cart');
 var Order = require('../models/order');
 var Wishlist = require('../models/wish-list');
+var Rating = require('../models/rating');
 /* GET home page. */
 
 router.get('/', function(req, res, next) {
