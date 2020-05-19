@@ -20,11 +20,6 @@ class Navbar extends Component {
     const userLink = (
       <ul className="nav nav-tabs">
         <li className="nav-item">
-          <Link to="/user-list" className="nav-link">
-            <h4>User List</h4>
-          </Link>
-        </li>
-        <li className="nav-item">
           <Link to="/product-list" className="nav-link">
             <h4>Product List</h4>
           </Link>

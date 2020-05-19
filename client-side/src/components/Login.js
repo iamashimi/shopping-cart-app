@@ -21,8 +21,15 @@ export default class Login extends Component {
       password: this.state.password,
     };
     login(user).then((res) => {
-      if (res) {
-        this.props.history.push(`/product-list`);
+      if(this.state.level === "manager") {
+        if (res) {
+          this.props.history.push(`/product-list`);
+        }
+      }
+      else if(this.state.level === "admin"){
+        if (res) {
+          this.props.history.push(`/user-list`);
+        }
       }
     });
   }
@@ -51,6 +58,14 @@ export default class Login extends Component {
                       placeholder="Enter password"
                       value={this.state.password}
                       onChange={this.onChange}
+                    />
+                    <input
+                        type="string"
+                        className="form-control mb-2"
+                        name="level"
+                        placeholder="Enter level"
+                        value={this.state.level}
+                        onChange={this.onChange}
                     />
                   </div>
                   <button className="btn btn-primary btn-block">Sign In</button>
