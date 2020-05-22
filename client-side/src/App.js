@@ -9,6 +9,7 @@ import Register from "./components/Register";
 import Users from "./components/Users";
 import EditProduct from "./components/EditProduct";
 import AddProduct from "./components/AddProduct";
+import Dashboard from "./components/Dashboard"
 
 class App extends Component {
   render() {
@@ -24,6 +25,8 @@ class App extends Component {
             <Route exact path="/user-list" component={Users} />
             <Route exact path="/add-product" component={AddProduct} />
             <Route exact path="/edit-product" component={EditProduct} />
+            <Route exact path="/Dashboard" component={Dashboard} />
+
           </div>
         </div>
       </Router>
