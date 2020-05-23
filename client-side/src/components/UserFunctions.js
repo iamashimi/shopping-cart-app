@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const register = (newUser) => {
   return axios
-    .post("admin/register", {
+    .post("http://localhost:3000/admin/register", {
       email: newUser.email,
       password: newUser.password,
       level: newUser.level,
@@ -13,11 +13,12 @@ export const register = (newUser) => {
 };
 export const login = (user) => {
   return axios
-    .post("admin/login", {
+    .post("http://localhost:3000/admin/login", {
       email: user.email,
       password: user.password,
     })
     .then((res) => {
+      console.log(res.log);
       localStorage.setItem("usertoken", res.data);
       return res.data;
     })
