@@ -1,3 +1,6 @@
+/* Cart model
+    functionalities: Add to cart, Remove from cart, reduce one by one, genarate a array
+*/
 module.exports = function Cart(oldCart) {
     this.items = oldCart.items || {};
     this.totalQty = oldCart.totalQty || 0;
