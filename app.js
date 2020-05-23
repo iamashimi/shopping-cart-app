@@ -18,22 +18,22 @@ var adminRouters = require("./routes/admin");
 
 var app = express();
 
-// require("dotenv").config(); // envirenment variables
+require("dotenv").config(); // envirenment variables
 
-// const uri = process.env.ATLAS_URI; // database URI
-// mongoose.connect(uri, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
-// const conn = mongoose.connection; // mongoose connection
-// conn.once("open", () => {
-//   console.log("*** MongoDB database connected successfully");
-// });
-
-mongoose.connect("mongodb://localhost:27017/shopping", {
+const uri = process.env.ATLAS_URI; // database URI
+mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+const conn = mongoose.connection; // mongoose connection
+conn.once("open", () => {
+  console.log("*** MongoDB database connected successfully");
+});
+
+// mongoose.connect("mongodb://localhost:27017/shopping", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
 require("./config/passport");
 // view engine setup
 app.engine(".hbs", expressHbs({ defaultLayout: "layout", extname: ".hbs" }));
